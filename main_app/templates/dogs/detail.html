@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/dog-detail.css' %}"
+/>
+
+<script defer src="{% static 'js/dog-detail.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="dog-container">
+  <div class="dog-img">
+    <img 
+      src="{% static 'images/dog2.png' %}" 
+      alt="A skater boy dog"
+    >
+  </div>
+  <div class="dog-details">
+    <h1>{{ dog.name }}</h1>
+    {% if dog.age > 0 %}
+      <h2>A {{ dog.age }} year old {{ dog.breed }}</h2>
+    {% else %}
+      <h2>A {{ dog.breed }} kitten.</h2>
+    {% endif %}
+    <p>{{ dog.description }}</p>
+    <div class="dog-actions">
+      <a href="{% url 'dogs_update' dog.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'dogs_delete' dog.id %}" class="btn danger">Delete</a>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+</section>
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Feedings</h2>
+      <img 
+        src="{% static 'images/dog3.png' %}" 
+        alt="An ice cream cone dog"
+      />
+      <img 
+        src="{% static 'images/dog3.png' %}"
+        alt="A dog as onigiri"
+      />
+      <img 
+        src="{% static 'images/dog3.png' %}" 
+        alt="A kabob of kittens"
+      />
+    </div>
+    <h3>Add a Feeding</h3>
+    <form
+      action="{% url 'add_feeding' dog.id %}" 
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ feeding_form.as_p }}
+      <button type="submit" class="btn submit">Add Feeding</button>
+    </form>
+    <h3>Past Feedings</h3>
+    {% if dog.feeding_set.all.count %}
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Meal</th></tr>
+        </thead>
+        <tbody>
+          {% for feeding in dog.feeding_set.all %}
+            <tr>
+              <td>{{feeding.date}}</td>
+              <td>{{feeding.get_meal_display}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="subsection-content">{{dog.name}} has never been fed 😟</p>
+    {% endif %}
+  </section>
+</div>
+
+{% endblock %}
+
