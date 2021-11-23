@@ -123,7 +123,7 @@ STATIC_URL = '/static/'
 # Add this variable to specify where decorators and mixins should redirect to
 LOGIN_URL = 'home'
 
-LOGIN_REDIRECT_URL = 'cats_index'
+LOGIN_REDIRECT_URL = 'dogs_index'
 
 LOGOUT_REDIRECT_URL = 'home'
 
