@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
@@ -7,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="page-header">
-  {% if object %}
-    <h1>Edit {{object.name}}</h1>
-  {% else %}
-    <h1>Add a Toy</h1>
-  {% endif %}
-  <img src="{% static 'images/dog1.png' %}" alt="A Dog using a computer"/>
+  <h1>Sign Up</h1>
+  <img src="{% static 'images/nerd-dog.svg' %}" alt="A dog using a computer"/>
 </div>
+{% if error_message %}
+  <p class="red-text">{{ error_message }}</p>
+{% endif %}
 <form action="" method="post" class="form-container" autocomplete="off">
   {% csrf_token %}
   <table>

@@ -151,8 +151,9 @@ nav li {
 .page-header img:first-of-type {
   margin-left: 20px;
 }
+
 img{
-  width: 100%;
+  width:100%;
 }
 
 @media only screen and (min-width: 768px) {
@@ -163,6 +164,9 @@ img{
     top: 0;
     align-items: center;
   }
+img{
+  width: 100%;
+}
 
   main {
     max-width: 1300px;
